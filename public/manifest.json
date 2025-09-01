@@ -1,0 +1,22 @@
+{
+  "name": "Roquetas Explorer",
+  "short_name": "Roquetas",
+  "description": "Your guide to restaurants, bars, cafes, and events in Roquetas de Mar.",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#6466E9",
+  "background_color": "#F0F5FE",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

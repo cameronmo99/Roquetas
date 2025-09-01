@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
@@ -8,6 +8,11 @@ import Footer from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: 'Roquetas Explorer',
   description: 'Your guide to restaurants, bars, cafes, and events in Roquetas de Mar.',
+  manifest: '/manifest.json',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#6466E9',
 };
 
 export default function RootLayout({

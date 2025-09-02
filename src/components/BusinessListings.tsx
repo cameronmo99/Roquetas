@@ -40,7 +40,7 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
         </div>
         <Select
           value={category}
-          onValueChange={(value: BusinessCategory | 'all') => setCategory(value)}
+          onValuechange={(value: BusinessCategory | 'all') => setCategory(value)}
         >
           <SelectTrigger className="w-full md:w-[200px]">
             <SelectValue placeholder="Filter by category" />
@@ -50,6 +50,7 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
             <SelectItem value="Restaurant">Restaurants</SelectItem>
             <SelectItem value="Bar">Bars</SelectItem>
             <SelectItem value="Cafe">Cafes</SelectItem>
+            <SelectItem value="Hotel">Hotels</SelectItem>
           </SelectContent>
         </Select>
       </div>

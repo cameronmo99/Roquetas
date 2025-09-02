@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Coffee, GlassWater, Star, UtensilsCrossed } from 'lucide-react';
+import { ArrowRight, Coffee, GlassWater, Hotel, Star, UtensilsCrossed } from 'lucide-react';
 import type { Business, BusinessCategory } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,7 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
   Restaurant: <UtensilsCrossed className="h-4 w-4" />,
   Bar: <GlassWater className="h-4 w-4" />,
   Cafe: <Coffee className="h-4 w-4" />,
+  Hotel: <Hotel className="h-4 w-4" />,
 };
 
 export default function BusinessCard({ business }: BusinessCardProps) {

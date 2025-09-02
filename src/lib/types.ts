@@ -5,7 +5,7 @@ export interface Review {
   comment: string;
 }
 
-export type BusinessCategory = 'Restaurant' | 'Bar' | 'Cafe';
+export type BusinessCategory = 'Restaurant' | 'Bar' | 'Cafe' | 'Hotel';
 
 export interface Business {
   id: string;

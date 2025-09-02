@@ -112,6 +112,28 @@ export const businesses: Business[] = [
       { id: 1, author: 'Sophie B.', rating: 5, comment: 'Incredible variety of tapas. Every single one was delicious!' },
     ],
   },
+  {
+    id: '6',
+    name: 'Hotel Bahía Serena',
+    category: 'Hotel',
+    description: 'Family-friendly hotel with beachfront access and great amenities.',
+    longDescription: 'Hotel Bahía Serena is the ideal choice for a family vacation, offering spacious rooms, stunning sea views, and direct access to the beach. Enjoy our pools, restaurants, and daily entertainment programs. Everything you need for a perfect getaway.',
+    images: ['https://picsum.photos/600/400?random=16', 'https://picsum.photos/600/400?random=17', 'https://picsum.photos/600/400?random=18'],
+    contact: {
+      phone: '+34 950 11 22 33',
+      website: 'https://hotelbahiaserena.es',
+    },
+    address: {
+      street: 'Av. de las Gaviotas, 15',
+      city: 'Roquetas de Mar',
+      zip: '04740',
+    },
+    location: { lat: 36.745, lng: -2.62 },
+    featured: true,
+    reviews: [
+      { id: 1, author: 'Mark C.', rating: 5, comment: 'Perfect location and fantastic facilities for kids.' },
+    ],
+  },
 ];
 
 export const events: Event[] = [

@@ -150,7 +150,7 @@ export const businesses: Business[] = [
       city: 'Roquetas de Mar, Almería',
       zip: '04740',
     },
-    location: { lat: 36.7265, lng: -2.6285 },
+    location: { lat: 36.7224, lng: -2.6293 },
     featured: false,
     reviews: [
       { id: 1, author: 'Chris G.', rating: 5, comment: 'Fantastic atmosphere and the staff are brilliant. Will be back!' },

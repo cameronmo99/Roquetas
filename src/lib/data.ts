@@ -134,6 +134,29 @@ export const businesses: Business[] = [
       { id: 1, author: 'Mark C.', rating: 5, comment: 'Perfect location and fantastic facilities for kids.' },
     ],
   },
+  {
+    id: '7',
+    name: "Lilly's Bar",
+    category: 'Bar',
+    description: 'A friendly local bar with a great atmosphere and live sports.',
+    longDescription: "Lilly's Bar is a popular spot in Roquetas de Mar, known for its welcoming staff and lively ambiance. It's the perfect place to enjoy a drink with friends, watch live sports on our big screens, or just relax after a day at the beach. We offer a wide selection of international and local beers, wines, and spirits, as well as classic bar snacks.",
+    images: ['https://picsum.photos/600/400?random=19', 'https://picsum.photos/600/400?random=20'],
+    contact: {
+      phone: '+34 123 456 789',
+      website: '#',
+    },
+    address: {
+      street: 'Av. de las Marinas, 123',
+      city: 'Roquetas de Mar',
+      zip: '04740',
+    },
+    location: { lat: 36.755, lng: -2.612 },
+    featured: false,
+    reviews: [
+      { id: 1, author: 'Chris G.', rating: 5, comment: 'Fantastic atmosphere and the staff are brilliant. Will be back!' },
+      { id: 2, author: 'Sarah P.', rating: 4, comment: 'Great place to watch the football. Good prices too.' },
+    ],
+  },
 ];
 
 export const events: Event[] = [

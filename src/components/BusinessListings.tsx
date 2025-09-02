@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
 
 import type { Business, BusinessCategory } from '@/lib/types';
@@ -13,8 +14,11 @@ interface BusinessListingsProps {
 }
 
 export default function BusinessListings({ allBusinesses }: BusinessListingsProps) {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') as BusinessCategory | 'all' || 'all';
+
   const [searchTerm, setSearchTerm] = useState('');
-  const [category, setCategory] = useState<BusinessCategory | 'all'>('all');
+  const [category, setCategory] = useState<BusinessCategory | 'all'>(initialCategory);
 
   const filteredBusinesses = useMemo(() => {
     return allBusinesses.filter((business) => {
@@ -40,7 +44,7 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
         </div>
         <Select
           value={category}
-          onValuechange={(value: BusinessCategory | 'all') => setCategory(value)}
+          onValueChange={(value: BusinessCategory | 'all') => setCategory(value)}
         >
           <SelectTrigger className="w-full md:w-[200px]">
             <SelectValue placeholder="Filter by category" />

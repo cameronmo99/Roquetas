@@ -137,7 +137,7 @@ export const businesses: Business[] = [
   {
     id: '7',
     name: "Lilly's Bar",
-    category: 'Bar',
+    category: 'Cafe',
     description: 'A friendly local bar with a great atmosphere and live sports.',
     longDescription: "Lilly's Bar is a popular spot in Roquetas de Mar, known for its welcoming staff and lively ambiance. It's the perfect place to enjoy a drink with friends, watch live sports on our big screens, or just relax after a day at the beach. We offer a wide selection of international and local beers, wines, and spirits, as well as classic bar snacks.",
     images: ['https://picsum.photos/600/400?random=19', 'https://picsum.photos/600/400?random=20'],

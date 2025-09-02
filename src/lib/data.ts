@@ -146,11 +146,11 @@ export const businesses: Business[] = [
       website: '#',
     },
     address: {
-      street: 'Av. de las Marinas, 123',
-      city: 'Roquetas de Mar',
+      street: 'Av. de Playa Serena, 204',
+      city: 'Roquetas de Mar, Almería',
       zip: '04740',
     },
-    location: { lat: 36.755, lng: -2.612 },
+    location: { lat: 36.7265, lng: -2.6285 },
     featured: false,
     reviews: [
       { id: 1, author: 'Chris G.', rating: 5, comment: 'Fantastic atmosphere and the staff are brilliant. Will be back!' },

@@ -19,7 +19,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <Image
-          src="/banner.jpg"
+          src="https://picsum.photos/1920/1080"
           alt="Poolside view of Hotel Bahía Serena"
           data-ai-hint="hotel pool"
           fill

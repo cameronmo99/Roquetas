@@ -28,7 +28,7 @@ export default function Home() {
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
+        {/* <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
           <h1 className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl">
             Discover Roquetas de Mar
           </h1>
@@ -43,7 +43,7 @@ export default function Home() {
               <Link href="/events">Upcoming Events</Link>
             </Button>
           </div>
-        </div>
+        </div> */}
       </section>
       
       <div className="container mx-auto px-4">

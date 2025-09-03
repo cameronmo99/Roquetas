@@ -27,7 +27,9 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/70" />
+        {/* The overlay div that creates the tint has been removed. */}
+        {/* The text and buttons below have been commented out for later use. */}
+        {/*
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
           <h1 className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl">
             Discover Roquetas de Mar
@@ -44,6 +46,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
+        */}
       </section>
       
       <div className="container mx-auto px-4">

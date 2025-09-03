@@ -8,7 +8,7 @@ export const businesses: Business[] = [
     description: 'Modern Mediterranean cuisine with stunning sea views.',
     longDescription:
       'Restaurante Alejandro offers a unique dining experience with its innovative dishes based on traditional Andalusian recipes. Our focus on fresh, local ingredients and our breathtaking location make us a must-visit in Roquetas de Mar. Perfect for romantic dinners and special occasions.',
-    images: ['https://placehold.co/600x400/6466E9/ffffff/png?text=New+Image', 'https://picsum.photos/600/400?random=2', 'https://picsum.photos/600/400?random=3'],
+    images: ['https://picsum.photos/600/400?random=1', 'https://picsum.photos/600/400?random=2', 'https://picsum.photos/600/400?random=3'],
     contact: {
       phone: '+34 950 32 24 08',
       website: 'https://restaurantealejandro.es',

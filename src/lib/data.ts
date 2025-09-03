@@ -117,7 +117,38 @@ export const businesses: Business[] = [
     name: 'Hotel Bahía Serena',
     category: 'Hotel',
     description: 'Family-friendly hotel with beachfront access and great amenities.',
-    longDescription: 'Hotel Bahía Serena is the ideal choice for a family vacation, offering spacious rooms, stunning sea views, and direct access to the beach. Enjoy our pools, restaurants, and daily entertainment programs. Everything you need for a perfect getaway.',
+    longDescription: `Located right on Playa Serena in Roquetas de Mar, Hotel Bahía Serena is a 4-star aparthotel offering a blend of apartment-style comfort, family-friendly amenities, and a prime seaside setting.
+
+Accommodation & Layout
+- The hotel features 222 to 240 air-conditioned apartments, ranging from approx. 45m² to 70m², with 1 or 2 bedrooms, living/dining areas, fully equipped kitchenettes, and private terraces offering lateral or sea views. Interiors include satellite TV, kitchen appliances, safes, Wi-Fi, and daily housekeeping with towel changes.
+
+Dining & Refreshments
+- Two restaurants (buffet and à la carte), a cafeteria, snack bar, poolside bar, and even access to 15 beach bars cater to a range of tastes. Buffet options often include show cooking and kid-friendly choices.
+
+Pools, Beach & Leisure Facilities
+- The hotel offers two outdoor pools (one with a water slide, plus pool bar and loungers) and an indoor heated pool.
+- Direct access to Playa Serena Beach—one of Roquetas de Mar’s awarded Blue Flag beaches—is a standout feature.
+- On-site leisure activities include a mini-club, playground, live entertainment, table tennis, arcade/game room, and fitness centre with sauna and spa services.
+
+Facilities & Services
+- Guests benefit from a 24-hour reception, laundry service, snack and beauty salon, underground parking (approx. €20/day), and conference/meeting spaces for events.
+- The hotel is wheelchair accessible, with lifts and accessible units.
+
+Location & Nearby Attractions
+- Situated in the heart of the Playa Serena urbanisation, it's within walking distance of shops, restaurants, public transport (≈100 m), and attractions like the Santa Ana Castle and Punta Entinas-Sabinar Natural Park.
+- Almería airport is about 36 km away.
+
+Summary
+
+Feature Highlights
+Location: Beachfront on Playa Serena; close to shops, transport, and local attractions
+Accommodation: Spacious, well-equipped aparthotel-style rooms with sea views and kitchens
+Amenities: Multiple pools, spa, fitness, minibars, multiple dining venues, entertainment
+Family-Friendly: Mini-club, playground, animations, game room—great for all ages
+Facilities: Parking, laundry, conference spaces; accessibility services
+Atmosphere: Good value, relaxed, best suited for families or holiday stays rather than romantic escapes
+
+If you're looking for a convenient, beachfront family-friendly option in Roquetas de Mar, Bahía Serena offers a comfortable stay with plenty to do on-site and nearby.`,
     images: ['https://picsum.photos/600/400?random=16', 'https://picsum.photos/600/400?random=17', 'https://picsum.photos/600/400?random=18'],
     contact: {
       phone: '+34 950 11 22 33',
@@ -150,7 +181,7 @@ export const businesses: Business[] = [
       city: 'Roquetas de Mar, Almería',
       zip: '04740',
     },
-    location: { lat: 36.7224, lng: -2.6293 },
+    location: { lat: 36.7224167, lng: -2.6292778 },
     featured: false,
     reviews: [
       { id: 1, author: 'Chris G.', rating: 5, comment: 'Fantastic atmosphere and the staff are brilliant. Will be back!' },

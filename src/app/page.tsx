@@ -27,7 +27,7 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
+        {/* <div className="absolute inset-0 bg-black/40" /> */}
         {/* <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
           <h1 className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl">
             Discover Roquetas de Mar

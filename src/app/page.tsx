@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] w-full">
+      <section className="relative h-screen w-full">
         <Image
           src="/images/Banner.png"
           alt="Banner of Roquetas de Mar"

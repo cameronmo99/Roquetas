@@ -19,9 +19,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <Image
-          src="https://picsum.photos/1200/800"
-          alt="Beautiful beach in Roquetas de Mar"
-          data-ai-hint="beach landscape"
+          src="/banner.jpg"
+          alt="Poolside view of Hotel Bahía Serena"
+          data-ai-hint="hotel pool"
           fill
           className="object-cover"
           priority

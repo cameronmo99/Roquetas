@@ -20,7 +20,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <Image
-          src="/images/banner.png"
+          src="https://picsum.photos/1600/900"
           alt="Banner of Roquetas de Mar"
           data-ai-hint="beach landscape"
           fill

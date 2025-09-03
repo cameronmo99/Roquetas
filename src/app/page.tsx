@@ -20,16 +20,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen w-full">
         <Image
-          src="https://picsum.photos/1920/1080"
+          src="/images/Banner.png"
           alt="Banner of Roquetas de Mar"
           data-ai-hint="beach landscape"
           fill
           className="object-cover"
           priority
         />
-        {/* The overlay div that creates the tint has been removed. */}
-        {/* The text and buttons below have been commented out for later use. */}
-        {/*
+        <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
           <h1 className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl">
             Discover Roquetas de Mar
@@ -46,7 +44,6 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        */}
       </section>
       
       <div className="container mx-auto px-4">

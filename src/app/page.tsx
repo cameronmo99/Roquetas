@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, MapPin, Star } from 'lucide-react';
@@ -19,7 +20,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full">
         <Image
-          src="https://picsum.photos/1200/800"
+          src="/images/banner.png"
           alt="Banner of Roquetas de Mar"
           data-ai-hint="beach landscape"
           fill

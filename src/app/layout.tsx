@@ -1,10 +1,23 @@
 import type { Metadata, Viewport } from 'next';
+import { PT_Sans, Poppins } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-headline',
+});
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-body',
+});
 
 export const metadata: Metadata = {
   title: 'Roquetas Explorer',
@@ -24,13 +37,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+        <link rel="preload" href="/images/Banner.png" as="image" />
         <meta name="theme-color" content="#6466E9" />
       </head>
-      <body className={cn('min-h-screen bg-background font-body antialiased')}>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-body antialiased',
+          poppins.variable,
+          ptSans.variable
+        )}
+      >
         <div className="relative flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>

@@ -4,7 +4,7 @@
   "description": "Your guide to restaurants, bars, cafes, and events in Roquetas de Mar.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#E6F0FA",
+  "background_color": "#E2E2FB",
   "theme_color": "#6466E9",
   "icons": [
     {

@@ -71,6 +71,7 @@ export default function Header() {
                         <Link
                             key={link.href}
                             href={link.href}
+                            aria-label={`Navigate to ${link.label}`}
                             className={cn(
                                 'transition-colors hover:text-foreground/80',
                                 pathname === link.href ? 'text-foreground' : 'text-foreground/60'

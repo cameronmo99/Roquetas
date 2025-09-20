@@ -73,27 +73,30 @@ export default function BusinessDetailsPage({ params }: BusinessDetailsPageProps
       </div>
 
       {/* Image Gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-        <Image
-          src={business.images[0]}
-          alt={`Main image of ${business.name}`}
-          data-ai-hint="restaurant interior"
-          width={800}
-          height={600}
-          className="aspect-video w-full rounded-lg object-cover shadow-md"
-          priority
-        />
+      <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="aspect-video w-full">
+          <Image
+            src={business.images[0]}
+            alt={`Main image of ${business.name}`}
+            data-ai-hint="restaurant interior"
+            width={800}
+            height={600}
+            className="h-full w-full rounded-lg object-cover shadow-md"
+            priority
+          />
+        </div>
         <div className="grid grid-cols-2 gap-4">
           {business.images.slice(1, 3).map((img, index) => (
-            <Image
-              key={index}
-              src={img}
-              alt={`Image ${index + 2} of ${business.name}`}
-              data-ai-hint="food dish"
-              width={400}
-              height={300}
-              className="aspect-video w-full rounded-lg object-cover shadow-sm"
-            />
+            <div key={index} className="aspect-video w-full">
+              <Image
+                src={img}
+                alt={`Image ${index + 2} of ${business.name}`}
+                data-ai-hint="food dish"
+                width={400}
+                height={300}
+                className="h-full w-full rounded-lg object-cover shadow-sm"
+              />
+            </div>
           ))}
         </div>
       </div>

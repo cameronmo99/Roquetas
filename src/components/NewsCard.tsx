@@ -1,16 +1,11 @@
-
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
 import { UtensilsCrossed, GlassWater, Coffee, Hotel, Tag, Calendar, Building } from 'lucide-react';
 
 import type { NewsItem, NewsCategory, BusinessCategory } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from './ui/skeleton';
 
 interface NewsCardProps {
   newsItem: NewsItem & { businessName: string; businessCategory?: BusinessCategory };
@@ -39,11 +34,7 @@ const getCategoryColor = (category: NewsCategory) => {
 
 export default function NewsCard({ newsItem }: NewsCardProps) {
   const { title, content, date, category, image, businessId, businessName, businessCategory } = newsItem;
-  const [formattedDate, setFormattedDate] = useState<string | null>(null);
-
-  useEffect(() => {
-    setFormattedDate(format(parseISO(date), 'MMMM d, yyyy'));
-  }, [date]);
+  const formattedDate = format(parseISO(date), 'MMMM d, yyyy');
 
   return (
     <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg md:flex-row">
@@ -83,11 +74,7 @@ export default function NewsCard({ newsItem }: NewsCardProps) {
             </div>
             <div className="flex items-center text-sm text-muted-foreground">
                 <Calendar className="mr-2 h-4 w-4" />
-                {formattedDate ? (
-                    <span>{formattedDate}</span>
-                ) : (
-                    <Skeleton className="h-4 w-24" />
-                )}
+                <span>{formattedDate}</span>
             </div>
         </CardFooter>
       </div>

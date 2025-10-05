@@ -40,3 +40,15 @@ export interface Event {
   location: string;
   image: string;
 }
+
+export type NewsCategory = 'Happy Hour' | 'Specialty Night' | 'Live Music' | 'General';
+
+export interface NewsItem {
+  id: string;
+  businessId: string;
+  title: string;
+  content: string;
+  date: string; // "YYYY-MM-DD"
+  category: NewsCategory;
+  image?: string;
+}

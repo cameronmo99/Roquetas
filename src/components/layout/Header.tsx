@@ -1,30 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { Menu, Waves } from 'lucide-react';
 import { useState } from 'react';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
   SheetTrigger,
+  SheetDescription,
 } from '@/components/ui/sheet';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/businesses', label: 'Businesses' },
-  { href: '/events', label: 'Events' },
-  { href: '/map', label: 'Map' },
-];
+import HeaderNav from './HeaderNav';
 
 export default function Header() {
-  const pathname = usePathname();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
@@ -38,20 +29,7 @@ export default function Header() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'transition-colors hover:text-foreground/80',
-                  pathname === link.href
-                    ? 'text-foreground'
-                    : 'text-foreground/60'
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <HeaderNav />
           </nav>
         </div>
         
@@ -67,26 +45,13 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
-            <SheetHeader className="pl-6">
+            <SheetHeader className="pl-6 text-left">
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription className="sr-only">Main navigation menu for Roquetas Explorer.</SheetDescription>
             </SheetHeader>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                 <div className="flex flex-col space-y-3">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsSheetOpen(false)}
-                            aria-label={`Navigate to ${link.label}`}
-                            className={cn(
-                                'transition-colors hover:text-foreground/80',
-                                pathname === link.href ? 'text-foreground' : 'text-foreground/60'
-                            )}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
+                    <HeaderNav onLinkClick={() => setIsSheetOpen(false)} />
                 </div>
             </div>
           </SheetContent>

@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  .light {
     --background: 228 67% 96%;
     --foreground: 232 43% 15%;
     --card: 0 0% 100%;
@@ -46,6 +47,50 @@
     --border: 232 43% 25%;
     --input: 232 43% 25%;
     --ring: 231 48% 54%;
+  }
+
+  .sunrise {
+    --background: 25 50% 95%; /* Lighter orange-tinted white */
+    --foreground: 25 30% 20%; /* Dark, warm brown */
+    --card: 15 30% 100%;
+    --card-foreground: 25 30% 20%;
+    --popover: 15 30% 100%;
+    --popover-foreground: 25 30% 20%;
+    --primary: 25 90% 60%; /* Bright orange */
+    --primary-foreground: 20 50% 98%;
+    --secondary: 25 50% 90%;
+    --secondary-foreground: 25 30% 20%;
+    --muted: 25 50% 90%;
+    --muted-foreground: 25 30% 50%;
+    --accent: 40 100% 65%; /* Golden yellow */
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 40% 85%;
+    --input: 25 40% 85%;
+    --ring: 25 90% 60%;
+  }
+
+  .sunset {
+    --background: 20 50% 15%; /* Deep, dark orange/brown */
+    --foreground: 25 30% 95%; /* Light, warm off-white */
+    --card: 20 40% 20%;
+    --card-foreground: 25 30% 95%;
+    --popover: 20 50% 10%;
+    --popover-foreground: 25 30% 95%;
+    --primary: 30 80% 65%; /* Rich orange */
+    --primary-foreground: 20 50% 98%;
+    --secondary: 20 30% 25%;
+    --secondary-foreground: 25 30% 95%;
+    --muted: 20 30% 25%;
+    --muted-foreground: 25 30% 80%;
+    --accent: 45 90% 60%; /* Amber */
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 30% 30%;
+    --input: 20 30% 30%;
+    --ring: 30 80% 65%;
   }
 }
 

@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#6466E9',
+  themeColor: '#3F51B5',
 };
 
 export default function RootLayout({
@@ -38,7 +39,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/Banner.png" as="image" />
-        <meta name="theme-color" content="#6466E9" />
+        <meta name="theme-color" content="#3F51B5" />
       </head>
       <body
         className={cn(
@@ -47,13 +48,20 @@ export default function RootLayout({
           ptSans.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Toaster />
-        <AddToHomeScreenPrompt />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+          <AddToHomeScreenPrompt />
+        </ThemeProvider>
       </body>
     </html>
   );

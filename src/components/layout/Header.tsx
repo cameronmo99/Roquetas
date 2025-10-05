@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Waves } from 'lucide-react';
 import HeaderNav from './HeaderNav';
 import MobileNav from './MobileNav';
+import { ThemeToggle } from '../ThemeToggle';
 
 export default function Header() {
   return (
@@ -21,10 +22,15 @@ export default function Header() {
         
         <MobileNav />
         
-        <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <Waves className="h-6 w-6 text-primary" />
-            <span className="font-bold font-headline">Roquetas Explorer</span>
-        </Link>
+        <div className="flex flex-1 items-center justify-between md:justify-end">
+          <Link href="/" className="flex items-center space-x-2 md:hidden">
+              <Waves className="h-6 w-6 text-primary" />
+              <span className="font-bold font-headline">Roquetas Explorer</span>
+          </Link>
+          <div className="flex items-center">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
     </header>
   );

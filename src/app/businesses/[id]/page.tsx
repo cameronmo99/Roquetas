@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Coffee, Globe, GlassWater, MapPin, Phone, Star, UtensilsCrossed, StarHalf, Hotel } from 'lucide-react';
+import { Coffee, Globe, GlassWater, MapPin, Phone, Star, UtensilsCrossed, StarHalf, Hotel, ShoppingBag, Building2, Store } from 'lucide-react';
 import type { Metadata } from 'next';
 
 import { businesses } from '@/lib/data';
@@ -33,6 +33,9 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
   Bar: <GlassWater className="h-5 w-5" />,
   Cafe: <Coffee className="h-5 w-5" />,
   Hotel: <Hotel className="h-5 w-5" />,
+  Takeaway: <ShoppingBag className="h-5 w-5" />,
+  Apartment: <Building2 className="h-5 w-5" />,
+  Shop: <Store className="h-5 w-5" />,
 };
 
 function renderStars(rating: number) {

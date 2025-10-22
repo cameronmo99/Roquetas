@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
-import { UtensilsCrossed, GlassWater, Coffee, Hotel, Tag, Calendar, Building } from 'lucide-react';
+import { UtensilsCrossed, GlassWater, Coffee, Hotel, Tag, Calendar, Building, ShoppingBag, Building2, Store } from 'lucide-react';
 
 import type { NewsItem, NewsCategory, BusinessCategory } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -16,6 +16,9 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
     Bar: <GlassWater className="h-4 w-4" />,
     Cafe: <Coffee className="h-4 w-4" />,
     Hotel: <Hotel className="h-4 w-4" />,
+    Takeaway: <ShoppingBag className="h-4 w-4" />,
+    Apartment: <Building2 className="h-4 w-4" />,
+    Shop: <Store className="h-4 w-4" />,
 };
 
 const getCategoryColor = (category: NewsCategory) => {
@@ -57,7 +60,7 @@ export default function NewsCard({ newsItem }: NewsCardProps) {
                     <Tag className="mr-1.5 h-3 w-3" />
                     {category}
                 </Badge>
-                {businessCategory && (
+                {businessCategory && categoryIcons[businessCategory] && (
                      <Badge variant="secondary">
                         {categoryIcons[businessCategory]}
                         <span className="ml-1.5">{businessCategory}</span>

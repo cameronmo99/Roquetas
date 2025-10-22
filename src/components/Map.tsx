@@ -6,7 +6,7 @@ import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react
 import { businesses } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { UtensilsCrossed, GlassWater, Coffee, Hotel } from 'lucide-react';
+import { UtensilsCrossed, GlassWater, Coffee, Hotel, ShoppingBag, Building2, Store } from 'lucide-react';
 import type { BusinessCategory } from '@/lib/types';
 
 const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
@@ -14,6 +14,9 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
   Bar: <GlassWater className="h-5 w-5" />,
   Cafe: <Coffee className="h-5 w-5" />,
   Hotel: <Hotel className="h-5 w-5" />,
+  Takeaway: <ShoppingBag className="h-5 w-5" />,
+  Apartment: <Building2 className="h-5 w-5" />,
+  Shop: <Store className="h-5 w-5" />,
 };
 
 export default function MapComponent({ apiKey }: { apiKey: string }) {

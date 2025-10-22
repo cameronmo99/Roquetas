@@ -55,6 +55,9 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
             <SelectItem value="Bar">Bars</SelectItem>
             <SelectItem value="Cafe">Cafes</SelectItem>
             <SelectItem value="Hotel">Hotels</SelectItem>
+            <SelectItem value="Takeaway">Takeaways</SelectItem>
+            <SelectItem value="Apartment">Apartments</SelectItem>
+            <SelectItem value="Shop">Shops</SelectItem>
           </SelectContent>
         </Select>
       </div>

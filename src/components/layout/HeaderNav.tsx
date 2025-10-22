@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/places', label: 'Places' },
   { href: '/events', label: 'Events' },
   { href: '/news', label: 'News' },
+  { href: '/transport', label: 'Transport' },
   { href: '/map', label: 'Map' },
 ];
 

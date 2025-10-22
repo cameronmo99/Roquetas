@@ -59,3 +59,18 @@ export interface NewsItem {
   category: NewsCategory;
   image?: string;
 }
+
+export type PlaceOfInterestCategory = 'Beach' | 'Nature' | 'Monument';
+
+export interface PlaceOfInterest {
+  id: string;
+  name: string;
+  category: PlaceOfInterestCategory;
+  description: string;
+  longDescription: string;
+  images: string[];
+  location: {
+    lat: number;
+    lng: number;
+  };
+}

@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Mail, Phone, Shield, LifeBuoy, Building, Plane } from 'lucide-react';
 import {
@@ -8,6 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Roquetas Explorer',

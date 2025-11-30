@@ -30,6 +30,7 @@ const usefulContacts = [
     { name: 'Ryanair (Spain)', number: '+34 972 18 34 57', icon: Plane },
     { name: 'EasyJet (Spain)', number: '+34 936 41 00 24', icon: Plane },
     { name: 'Vueling', number: '+34 900 64 50 00', icon: Plane },
+    { name: 'Air Nostrum', number: '+34 911 36 03 50', icon: Plane },
 ];
 
 export default function ContactPage() {

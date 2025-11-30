@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/news', label: 'News' },
   { href: '/transport', label: 'Transport' },
   { href: '/map', label: 'Map' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 interface HeaderNavProps {

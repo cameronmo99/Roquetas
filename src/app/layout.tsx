@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from 'next';
 import { PT_Sans, Poppins } from 'next/font/google';
 import './globals.css';
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preload" href="/images/Banner.png" as="image" />
+        <link rel="preload" href="/images/Banner.png?v=2" as="image" />
         <meta name="theme-color" content="#3F51B5" />
       </head>
       <body

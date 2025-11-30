@@ -29,19 +29,24 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
-          <h1 className="font-headline text-4xl font-bold md:text-6xl lg:text-7xl">
-            Discover Roquetas de Mar
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl">
-            Your ultimate guide to the best restaurants, bars, events, and attractions in town.
-          </p>
-          <div className="mt-8 flex gap-4">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/businesses">Explore Businesses</Link>
-            </Button>
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/events">Upcoming Events</Link>
-            </Button>
+          <div className="animate-fade-in-up rounded-lg bg-black/50 p-6 md:p-10 max-w-4xl mx-4 backdrop-blur-sm">
+            <h1 className="font-headline text-3xl font-bold md:text-5xl">
+                Welcome to the Roquetas de Mar Explorer App!
+            </h1>
+            <div className="mt-6 space-y-4 text-base md:text-lg text-left">
+                <p>
+                    This app is designed to be your handy guide before and during your stay in Roquetas de Mar. Inside, you'll find recommendations on the best places to eat, drink, and stay, as well as must-see attractions, essential contacts, and much more.
+                </p>
+                <p>
+                    We hope you find the information helpful for making the most of your visit. Your feedback is always welcome, as it helps us keep improving the experience.
+                </p>
+                <p>
+                    Enjoy exploring—and don't forget to browse the menu tabs for more details!
+                </p>
+                <p className="font-semibold pt-4">
+                    The Roquetas Explorer Team
+                </p>
+            </div>
           </div>
         </div>
       </section>

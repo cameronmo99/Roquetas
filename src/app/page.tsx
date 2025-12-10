@@ -78,7 +78,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen w-full">
         <Image
-          src="/images/Banner.png?v=2"
+          src="/images/Banner.png"
           alt="Banner of Roquetas de Mar"
           data-ai-hint="beach landscape"
           fill

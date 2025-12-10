@@ -134,26 +134,28 @@ export default function HeaderNav() {
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
   React.ComponentPropsWithoutRef<'a'> & { icon: React.ReactNode }
->(({ className, title, children, icon, ...props }, ref) => {
+>(({ className, title, children, icon, href, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
-          )}
-          {...props}
-        >
-            <div className="flex items-center gap-2">
-                {icon}
-                <div className="text-sm font-medium leading-none">{title}</div>
-            </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
+        <Link href={href || '#'} legacyBehavior passHref>
+          <a
+            ref={ref}
+            className={cn(
+              'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+              className
+            )}
+            {...props}
+          >
+              <div className="flex items-center gap-2">
+                  {icon}
+                  <div className="text-sm font-medium leading-none">{title}</div>
+              </div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </p>
+          </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );

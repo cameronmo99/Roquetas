@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -73,7 +74,7 @@ export default function HeaderNav() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <Link href="/" passHref asChild>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} active={pathname === '/'}>
             Home
             </NavigationMenuLink>
@@ -83,16 +84,24 @@ export default function HeaderNav() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Accommodation</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {accommodationComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                  icon={component.icon}
-                >
-                  {component.description}
-                </ListItem>
+                <li key={component.title}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={component.href}
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="flex items-center gap-2">
+                        {component.icon}
+                        <div className="text-sm font-medium leading-none">{component.title}</div>
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        {component.description}
+                      </p>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -101,16 +110,24 @@ export default function HeaderNav() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Food &amp; Drink</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {foodAndDrinkComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                  icon={component.icon}
-                >
-                  {component.description}
-                </ListItem>
+                <li key={component.title}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={component.href}
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div className="flex items-center gap-2">
+                        {component.icon}
+                        <div className="text-sm font-medium leading-none">{component.title}</div>
+                      </div>
+                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        {component.description}
+                      </p>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -118,7 +135,7 @@ export default function HeaderNav() {
 
         {navLinks.map((link) => (
             <NavigationMenuItem key={link.href}>
-                <Link href={link.href} legacyBehavior passHref>
+                <Link href={link.href} passHref asChild>
                     <NavigationMenuLink className={navigationMenuTriggerStyle()} active={pathname.startsWith(link.href)}>
                     {link.label}
                     </NavigationMenuLink>
@@ -130,32 +147,3 @@ export default function HeaderNav() {
     </NavigationMenu>
   );
 }
-
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'> & { icon: React.ReactNode }
->(({ className, title, children, icon, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-            ref={ref}
-            className={cn(
-              'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-              className
-            )}
-            {...props}
-          >
-              <div className="flex items-center gap-2">
-                  {icon}
-                  <div className="text-sm font-medium leading-none">{title}</div>
-              </div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = 'ListItem';

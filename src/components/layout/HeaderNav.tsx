@@ -73,8 +73,8 @@ export default function HeaderNav() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/" passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), pathname === '/' ? 'bg-accent' : '')}>
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()} active={pathname === '/'}>
             Home
             </NavigationMenuLink>
           </Link>
@@ -118,8 +118,8 @@ export default function HeaderNav() {
 
         {navLinks.map((link) => (
             <NavigationMenuItem key={link.href}>
-                <Link href={link.href} passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), pathname.startsWith(link.href) ? 'bg-accent' : '')}>
+                <Link href={link.href} legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} active={pathname.startsWith(link.href)}>
                     {link.label}
                     </NavigationMenuLink>
                 </Link>
@@ -134,12 +134,11 @@ export default function HeaderNav() {
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
   React.ComponentPropsWithoutRef<'a'> & { icon: React.ReactNode }
->(({ className, title, children, icon, href, ...props }, ref) => {
+>(({ className, title, children, icon, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link
-          href={href || '#'}
+        <a
           ref={ref}
           className={cn(
             'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
@@ -154,7 +153,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </Link>
+        </a>
       </NavigationMenuLink>
     </li>
   );

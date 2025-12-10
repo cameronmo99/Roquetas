@@ -1,5 +1,5 @@
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
 import { PT_Sans, Poppins } from 'next/font/google';
 import '../globals.css';
@@ -9,6 +9,7 @@ import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import {locales} from '@/i18n.tsx';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -21,6 +22,10 @@ const ptSans = PT_Sans({
   weight: ['400', '700'],
   variable: '--font-body',
 });
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({locale}));
+}
 
 export const metadata: Metadata = {
   title: 'Roquetas Explorer',
@@ -40,6 +45,9 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
   // Providing all messages to the client
   // side is a simple way to get started
   const messages = await getMessages();

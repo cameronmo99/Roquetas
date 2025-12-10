@@ -4,7 +4,7 @@ import {getRequestConfig} from 'next-intl/server';
 // Can be imported from a shared config
 export const locales = ['en', 'es', 'ca', 'fr', 'de'];
 export const defaultLocale = 'en';
-export const languageNames = {
+export const languageNames: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
     ca: 'Català',

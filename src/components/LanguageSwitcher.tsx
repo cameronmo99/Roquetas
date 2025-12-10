@@ -1,7 +1,8 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { Link, usePathname } from 'next-intl/navigation';
+import { usePathname } from 'next/navigation';
+import { Link } from 'next-intl/navigation';
 import { Languages } from 'lucide-react';
 import {
   DropdownMenu,
@@ -10,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { locales, languageNames } from '@/i18n';
+import { locales, languageNames } from '@/i18n.tsx';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -28,7 +29,7 @@ export default function LanguageSwitcher() {
         {locales.map((loc) => (
           <DropdownMenuItem key={loc} asChild>
             <Link href={pathname} locale={loc}>
-              {languageNames[loc as keyof typeof languageNames] || loc}
+              {languageNames[loc] || loc}
             </Link>
           </DropdownMenuItem>
         ))}

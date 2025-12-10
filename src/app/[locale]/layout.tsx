@@ -11,11 +11,14 @@ export default function LocaleLayout({
   params: {locale: string};
 }) {
   const messages = useMessages();
+  
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <div className="relative flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+      </div>
     </NextIntlClientProvider>
   );
 }

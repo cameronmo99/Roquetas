@@ -1,12 +1,8 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
 import { PT_Sans, Poppins } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
 import { ThemeProvider } from '@/components/ThemeProvider';
 

@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -30,13 +32,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-  params: {locale}
 }: {
   children: React.ReactNode;
-  params: {locale: string};
 }) {
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/Banner.png?v=2" as="image" />
         <meta name="theme-color" content="#3F51B5" />
@@ -55,7 +55,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative flex min-h-screen flex-col">
-            {children}
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
           </div>
           <Toaster />
           <AddToHomeScreenPrompt />

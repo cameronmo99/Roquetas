@@ -1,16 +1,18 @@
-
-import {NextIntlClientProvider, useMessages} from 'next-intl';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: {locale}
 }: {
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  const messages = useMessages();
+  // Providing all messages to the client
+  // side is a simple way to get started
+  const messages = await getMessages();
   
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>

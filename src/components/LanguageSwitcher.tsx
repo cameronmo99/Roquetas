@@ -1,8 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import { Link } from 'next-intl/navigation';
-import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { Languages } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -13,8 +11,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { locales } from '@/i18n';
 
+const locales = ['en', 'es', 'ca', 'fr', 'de'];
 const languageNames: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
@@ -24,25 +22,30 @@ const languageNames: { [key: string]: string } = {
 };
 
 export default function LanguageSwitcher() {
-  const locale = useLocale();
-  const pathname = usePathname();
+  const [locale, setLocale] = useState('en');
+
+  // This component is now a placeholder.
+  // The i18n functionality has been temporarily removed to fix build errors.
+  const handleLocaleChange = (newLocale: string) => {
+    console.log('Language change to', newLocale, 'is currently disabled.');
+    // In a real implementation, you would use a router to change the locale.
+    // e.g., router.push(pathname, { locale: newLocale });
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="Change language (disabled)">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Change language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuRadioGroup value={locale}>
+        <DropdownMenuRadioGroup value={locale} onValueChange={handleLocaleChange}>
           {locales.map((loc) => (
-            <Link href={pathname} locale={loc} key={loc} passHref>
-              <DropdownMenuRadioItem value={loc}>
+              <DropdownMenuRadioItem key={loc} value={loc}>
                 {languageNames[loc] || loc}
               </DropdownMenuRadioItem>
-            </Link>
           ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

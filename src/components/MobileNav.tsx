@@ -66,29 +66,9 @@ export default function MobileNav() {
           </SheetHeader>
           <div className="h-full overflow-y-auto p-4">
             <nav className="flex flex-col gap-1">
-              {mainLinks.map((link) => (
-                <NavLink key={link.href} href={link.href}>
-                  {link.label}
-                </NavLink>
-              ))}
+              <NavLink href="/">Home</NavLink>
 
               <Accordion type="multiple" className="w-full">
-                <AccordionItem value="accommodation" className="border-b-0">
-                  <AccordionTrigger className="p-2 text-lg font-medium rounded-md hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/80">
-                    Accommodation
-                  </AccordionTrigger>
-                  <AccordionContent className="pl-4">
-                    <div className="flex flex-col gap-1 pt-2">
-                        {accommodationLinks.map((link) => (
-                            <NavLink key={link.href} href={link.href}>
-                                {link.icon}
-                                <span className="ml-2">{link.label}</span>
-                            </NavLink>
-                        ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
                 <AccordionItem value="food-drink" className="border-b-0">
                   <AccordionTrigger className="p-2 text-lg font-medium rounded-md hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/80">
                     Food &amp; Drink
@@ -104,7 +84,29 @@ export default function MobileNav() {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+
+                <AccordionItem value="accommodation" className="border-b-0">
+                  <AccordionTrigger className="p-2 text-lg font-medium rounded-md hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/80">
+                    Accommodation
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-4">
+                    <div className="flex flex-col gap-1 pt-2">
+                        {accommodationLinks.map((link) => (
+                            <NavLink key={link.href} href={link.href}>
+                                {link.icon}
+                                <span className="ml-2">{link.label}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
               </Accordion>
+
+              {mainLinks.slice(1).map((link) => (
+                <NavLink key={link.href} href={link.href}>
+                  {link.label}
+                </NavLink>
+              ))}
             </nav>
           </div>
         </SheetContent>

@@ -61,9 +61,6 @@ export default function Home() {
                   <p>
                       We hope you find the information helpful for making the most of your visit. Your feedback is always welcome, as it helps us keep improving the experience.
                   </p>
-                  <p>
-                      Enjoy exploring—and don't forget to browse the menu tabs for more details!
-                  </p>
                   <p className="font-semibold pt-4">
                       The Roquetas Explorer Team
                   </p>
@@ -85,9 +82,9 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
                 {tileLinks.map(link => (
                     <Link href={link.href} key={link.href}>
-                        <div className="flex flex-col items-center justify-center text-center p-6 bg-black/50 backdrop-blur-sm rounded-lg h-36 w-36 md:h-40 md:w-40 transition-all duration-300 hover:bg-black/70 hover:scale-105">
+                        <div className="flex flex-col items-center justify-center text-center p-4 bg-black/50 backdrop-blur-sm rounded-lg h-36 w-40 transition-all duration-300 hover:bg-black/70 hover:scale-105">
                             {link.icon}
-                            <span className="mt-2 font-headline text-lg">{link.label}</span>
+                            <span className="mt-2 font-headline text-base">{link.label}</span>
                         </div>
                     </Link>
                 ))}

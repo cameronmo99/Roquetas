@@ -1,43 +1,111 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu } from 'lucide-react';
-
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, Hotel, Building2, UtensilsCrossed, GlassWater, Coffee, ShoppingBag } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetDescription,
-} from '@/components/ui/sheet';
-import HeaderNav from './layout/HeaderNav';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+const accommodationLinks = [
+  { href: '/businesses?category=Hotel', label: 'Hotels', icon: <Hotel className="h-4 w-4" /> },
+  { href: '/businesses?category=Apartment', label: 'Apartments', icon: <Building2 className="h-4 w-4" /> },
+];
+
+const foodAndDrinkLinks = [
+  { href: '/businesses?category=Restaurant', label: 'Restaurants', icon: <UtensilsCrossed className="h-4 w-4" /> },
+  { href: '/businesses?category=Bar', label: 'Bars', icon: <GlassWater className="h-4 w-4" /> },
+  { href: '/businesses?category=Cafe', label: 'Cafes', icon: <Coffee className="h-4 w-4" /> },
+  { href: '/businesses?category=Takeaway', label: 'Takeaways', icon: <ShoppingBag className="h-4 w-4" /> },
+];
+
+const mainLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/places', label: 'Places' },
+  { href: '/events', label: 'Events' },
+  { href: '/news', label: 'News' },
+  { href: '/transport', label: 'Transport' },
+  { href: '/map', label: 'Map' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export default function MobileNav() {
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
+  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <Link
+      href={href}
+      onClick={handleLinkClick}
+      className={cn(
+        'flex items-center p-2 text-lg font-medium rounded-md hover:bg-accent',
+        pathname === href ? 'bg-accent/80' : ''
+      )}
+    >
+      {children}
+    </Link>
+  );
 
   return (
     <div className="md:hidden">
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-            aria-label="Open navigation menu"
-          >
+          <Button variant="ghost" size="icon" aria-label="Open navigation menu">
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="pr-0">
-          <SheetHeader className="pl-6 text-left">
-            <SheetTitle>Menu</SheetTitle>
-            <SheetDescription className="sr-only">Main navigation menu for Roquetas Explorer.</SheetDescription>
+        <SheetContent side="left" className="w-full max-w-xs p-0">
+          <SheetHeader className="border-b p-4 text-left">
+            <SheetTitle className="font-headline">Roquetas Explorer</SheetTitle>
           </SheetHeader>
-          <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-            <div className="flex flex-col space-y-3">
-              <HeaderNav onLinkClick={() => setIsSheetOpen(false)} />
-            </div>
+          <div className="h-full overflow-y-auto p-4">
+            <nav className="flex flex-col gap-1">
+              {mainLinks.map((link) => (
+                <NavLink key={link.href} href={link.href}>
+                  {link.label}
+                </NavLink>
+              ))}
+
+              <Accordion type="multiple" className="w-full">
+                <AccordionItem value="accommodation" className="border-b-0">
+                  <AccordionTrigger className="p-2 text-lg font-medium rounded-md hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/80">
+                    Accommodation
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-4">
+                    <div className="flex flex-col gap-1 pt-2">
+                        {accommodationLinks.map((link) => (
+                            <NavLink key={link.href} href={link.href}>
+                                {link.icon}
+                                <span className="ml-2">{link.label}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="food-drink" className="border-b-0">
+                  <AccordionTrigger className="p-2 text-lg font-medium rounded-md hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/80">
+                    Food &amp; Drink
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-4">
+                    <div className="flex flex-col gap-1 pt-2">
+                        {foodAndDrinkLinks.map((link) => (
+                            <NavLink key={link.href} href={link.href}>
+                                {link.icon}
+                                <span className="ml-2">{link.label}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </nav>
           </div>
         </SheetContent>
       </Sheet>

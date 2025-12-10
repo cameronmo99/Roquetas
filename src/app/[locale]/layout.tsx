@@ -9,7 +9,6 @@ import AddToHomeScreenPrompt from '@/components/AddToHomeScreenPrompt';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import {locales} from '@/i18n.tsx';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -24,7 +23,9 @@ const ptSans = PT_Sans({
 });
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({locale}));
+  // This is no longer used but removing it might cause other issues.
+  // Returning a default locale to prevent build errors.
+  return [{locale: 'en'}];
 }
 
 export const metadata: Metadata = {
@@ -45,17 +46,10 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  // Enable static rendering
-  unstable_setRequestLocale(locale);
-
-  // Providing all messages to the client
-  // side is a simple way to get started
-  const messages = await getMessages();
-  
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
        <head>
-        <link rel="preload" href="/images/Banner.png?v=2" as="image" />
+        <link rel="preload" href="/images/Banner.png" as="image" />
         <meta name="theme-color" content="#3F51B5" />
       </head>
       <body
@@ -71,7 +65,6 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider locale={locale} messages={messages}>
             <div className="relative flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>
@@ -79,7 +72,6 @@ export default async function LocaleLayout({
             </div>
             <Toaster />
             <AddToHomeScreenPrompt />
-          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,53 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { Link, usePathname } from 'next-intl/navigation';
 import { Languages } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-
-const locales = ['en', 'es', 'ca', 'fr', 'de'];
-const languageNames: { [key: string]: string } = {
-    en: 'English',
-    es: 'Español',
-    ca: 'Català',
-    fr: 'Français',
-    de: 'Deutsch',
-};
+import { Button } from '@/components/ui/button';
+import { locales, languageNames } from '@/i18n';
 
 export default function LanguageSwitcher() {
-  const [locale, setLocale] = useState('en');
-
-  // This component is now a placeholder.
-  // The i18n functionality has been temporarily removed to fix build errors.
-  const handleLocaleChange = (newLocale: string) => {
-    console.log('Language change to', newLocale, 'is currently disabled.');
-    // In a real implementation, you would use a router to change the locale.
-    // e.g., router.push(pathname, { locale: newLocale });
-  };
+  const locale = useLocale();
+  const pathname = usePathname();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Change language (disabled)">
+        <Button variant="ghost" size="icon">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Change language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuRadioGroup value={locale} onValueChange={handleLocaleChange}>
-          {locales.map((loc) => (
-              <DropdownMenuRadioItem key={loc} value={loc}>
-                {languageNames[loc] || loc}
-              </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
+        {locales.map((loc) => (
+          <DropdownMenuItem key={loc} asChild>
+            <Link href={pathname} locale={loc}>
+              {languageNames[loc as keyof typeof languageNames] || loc}
+            </Link>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -1,13 +1,12 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  // This is a do-nothing middleware. It simply passes the request to the next handler.
-  return NextResponse.next();
-}
-
-// An empty matcher ensures this middleware doesn't run on any paths,
-// but its existence in the file is enough to fix the error.
+import createMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from './i18n';
+ 
+export default createMiddleware({
+  locales,
+  defaultLocale
+});
+ 
 export const config = {
-  matcher: [],
+  // Match only internationalized pathnames
+  matcher: ['/', '/(de|en|es|fr|ca)/:path*']
 };

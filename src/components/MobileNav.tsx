@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, Hotel, Building2, UtensilsCrossed, GlassWater, Coffee, ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const accommodationLinks = [
@@ -63,6 +63,7 @@ export default function MobileNav() {
         <SheetContent side="left" className="w-full max-w-xs p-0">
           <SheetHeader className="border-b p-4 text-left">
             <SheetTitle className="font-headline">Roquetas Explorer</SheetTitle>
+            <SheetDescription className="sr-only">Main navigation menu</SheetDescription>
           </SheetHeader>
           <div className="h-full overflow-y-auto p-4">
             <nav className="flex flex-col gap-1">

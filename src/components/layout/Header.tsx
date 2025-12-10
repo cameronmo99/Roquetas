@@ -3,6 +3,7 @@ import { Waves } from 'lucide-react';
 import HeaderNav from './HeaderNav';
 import MobileNav from '../MobileNav';
 import { ThemeToggle } from '../ThemeToggle';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 export default function Header() {
   return (
@@ -15,17 +16,19 @@ export default function Header() {
           </span>
         </Link>
         
-        <div className="mr-4 hidden md:flex md:flex-1">
+        <div className="mr-auto hidden md:flex">
             <HeaderNav />
         </div>
         
         <div className="flex flex-1 items-center justify-end md:hidden">
           <ThemeToggle />
+          <LanguageSwitcher />
           <MobileNav />
         </div>
         
-        <div className="hidden items-center justify-end md:flex">
+        <div className="hidden items-center justify-end gap-2 md:flex">
           <ThemeToggle />
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

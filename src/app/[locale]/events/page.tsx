@@ -1,3 +1,4 @@
+
 import { events } from '@/lib/data';
 import EventCard from '@/components/EventCard';
 

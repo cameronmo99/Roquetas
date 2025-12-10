@@ -1,3 +1,4 @@
+
 import { newsItems } from '@/lib/news-data';
 import { businesses } from '@/lib/data';
 import NewsCard from '@/components/NewsCard';

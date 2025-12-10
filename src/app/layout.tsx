@@ -1,4 +1,5 @@
-
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
 import { PT_Sans, Poppins } from 'next/font/google';
 import './globals.css';
@@ -33,11 +34,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  params: {locale}
+}: {
   children: React.ReactNode;
-}>) {
+  params: {locale: string};
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/Banner.png?v=2" as="image" />
         <meta name="theme-color" content="#3F51B5" />
@@ -56,9 +59,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            {children}
           </div>
           <Toaster />
           <AddToHomeScreenPrompt />

@@ -1,3 +1,4 @@
+
 import { Suspense } from 'react';
 import { businesses } from '@/lib/data';
 import BusinessListings from '@/components/BusinessListings';

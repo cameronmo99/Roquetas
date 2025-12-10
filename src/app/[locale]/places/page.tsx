@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { places } from '@/lib/places-data';
 import type { PlaceOfInterest, PlaceOfInterestCategory } from '@/lib/types';

@@ -1,3 +1,4 @@
+
 import MapComponent from '@/components/Map';
 
 export const metadata = {

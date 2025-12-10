@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Calendar, MapPin, Star, UtensilsCrossed, Hotel, Building, Plane, Waves, Newspaper, Phone } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Calendar, MapPin, Star, UtensilsCrossed, Hotel, Building2, Plane, Waves, Newspaper, Phone, GlassWater, Coffee, ShoppingBag } from 'lucide-react';
 
 import { businesses, events } from '@/lib/data';
 import { Button } from '@/components/ui/button';
@@ -13,9 +13,9 @@ import BusinessCard from '@/components/BusinessCard';
 import EventCard from '@/components/EventCard';
 import AiRecommender from '@/components/AiRecommender';
 
-const tileLinks = [
-    { href: '/businesses?category=Restaurant', label: 'Food & Drink', icon: <UtensilsCrossed size={32} /> },
-    { href: '/businesses?category=Hotel', label: 'Accommodation', icon: <Hotel size={32} /> },
+const mainTileLinks = [
+    { id: 'food', label: 'Food & Drink', icon: <UtensilsCrossed size={32} /> },
+    { id: 'accommodation', label: 'Accommodation', icon: <Hotel size={32} /> },
     { href: '/places', label: 'Places', icon: <Waves size={32} /> },
     { href: '/events', label: 'Events', icon: <Calendar size={32} /> },
     { href: '/news', label: 'News', icon: <Newspaper size={32} /> },
@@ -24,12 +24,55 @@ const tileLinks = [
     { href: '/contact', label: 'Contact', icon: <Phone size={32} /> },
 ];
 
+const foodTileLinks = [
+    { href: '/businesses?category=Restaurant', label: 'Restaurants', icon: <UtensilsCrossed size={32} /> },
+    { href: '/businesses?category=Bar', label: 'Bars', icon: <GlassWater size={32} /> },
+    { href: '/businesses?category=Cafe', label: 'Cafes', icon: <Coffee size={32} /> },
+    { href: '/businesses?category=Takeaway', label: 'Takeaways', icon: <ShoppingBag size={32} /> },
+    { id: 'back', label: 'Back', icon: <ArrowLeft size={32} /> },
+];
+
+const accommodationTileLinks = [
+    { href: '/businesses?category=Hotel', label: 'Hotels', icon: <Hotel size={32} /> },
+    { href: '/businesses?category=Apartment', label: 'Apartments', icon: <Building2 size={32} /> },
+    { id: 'back', label: 'Back', icon: <ArrowLeft size={32} /> },
+];
+
+type TileView = 'welcome' | 'main' | 'food' | 'accommodation';
 
 export default function Home() {
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [tileView, setTileView] = useState<TileView>('welcome');
   const featuredBusinesses = businesses.filter((b) => b.featured && b.category !== 'Hotel');
   const featuredHotels = businesses.filter((b) => b.featured && b.category === 'Hotel');
   const upcomingEvents = events.slice(0, 3);
+
+  const handleTileClick = (id?: string) => {
+    if (id === 'food') setTileView('food');
+    else if (id === 'accommodation') setTileView('accommodation');
+    else if (id === 'back') setTileView('main');
+  };
+
+  const renderTiles = (links: any[]) => (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+      {links.map(link => (
+        link.href ? (
+          <Link href={link.href} key={link.label}>
+            <div className="flex flex-col items-center justify-center text-center p-4 bg-black/50 backdrop-blur-sm rounded-lg h-36 w-44 transition-all duration-300 hover:bg-black/70 hover:scale-105">
+              {link.icon}
+              <span className="mt-2 font-headline text-sm md:text-base">{link.label}</span>
+            </div>
+          </Link>
+        ) : (
+          <div key={link.label} onClick={() => handleTileClick(link.id)} className="cursor-pointer">
+            <div className="flex flex-col items-center justify-center text-center p-4 bg-black/50 backdrop-blur-sm rounded-lg h-36 w-44 transition-all duration-300 hover:bg-black/70 hover:scale-105">
+              {link.icon}
+              <span className="mt-2 font-headline text-sm md:text-base">{link.label}</span>
+            </div>
+          </div>
+        )
+      ))}
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">
@@ -48,7 +91,7 @@ export default function Home() {
         
           {/* Welcome Message and Enter Button */}
           <div
-            className={`transition-opacity duration-500 ease-in-out ${showWelcome ? 'opacity-100' : 'opacity-0 hidden'}`}
+            className={`transition-opacity duration-500 ease-in-out ${tileView === 'welcome' ? 'opacity-100' : 'opacity-0 hidden'}`}
           >
             <div className="rounded-lg bg-black/50 p-6 md:p-10 max-w-4xl mx-4 backdrop-blur-sm">
               <h1 className="font-headline text-3xl font-bold md:text-5xl">
@@ -68,27 +111,26 @@ export default function Home() {
               <Button
                 size="lg"
                 className="mt-8 animate-fade-in-up"
-                onClick={() => setShowWelcome(false)}
+                onClick={() => setTileView('main')}
               >
                 Enter Site
               </Button>
             </div>
           </div>
           
-          {/* Tile Navigation */}
-          <div
-            className={`transition-opacity duration-500 ease-in-out ${!showWelcome ? 'opacity-100' : 'opacity-0 hidden'}`}
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-                {tileLinks.map(link => (
-                    <Link href={link.href} key={link.href}>
-                        <div className="flex flex-col items-center justify-center text-center p-4 bg-black/50 backdrop-blur-sm rounded-lg h-36 w-40 transition-all duration-300 hover:bg-black/70 hover:scale-105">
-                            {link.icon}
-                            <span className="mt-2 font-headline text-base">{link.label}</span>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+          {/* Main Tile Navigation */}
+          <div className={`transition-opacity duration-300 ease-in-out ${tileView === 'main' ? 'opacity-100' : 'opacity-0 hidden'}`}>
+            {renderTiles(mainTileLinks)}
+          </div>
+          
+          {/* Food & Drink Tile Navigation */}
+          <div className={`transition-opacity duration-300 ease-in-out ${tileView === 'food' ? 'opacity-100' : 'opacity-0 hidden'}`}>
+            {renderTiles(foodTileLinks)}
+          </div>
+          
+          {/* Accommodation Tile Navigation */}
+          <div className={`transition-opacity duration-300 ease-in-out ${tileView === 'accommodation' ? 'opacity-100' : 'opacity-0 hidden'}`}>
+            {renderTiles(accommodationTileLinks)}
           </div>
 
         </div>

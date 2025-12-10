@@ -1,7 +1,8 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next-intl/navigation';
+import { Link } from 'next-intl/navigation';
+import { usePathname } from 'next/navigation';
 import { Languages } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -24,12 +25,7 @@ const languageNames: { [key: string]: string } = {
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
-
-  const handleLocaleChange = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
-  };
 
   return (
     <DropdownMenu>
@@ -40,14 +36,13 @@ export default function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuRadioGroup
-          value={locale}
-          onValueChange={handleLocaleChange}
-        >
+        <DropdownMenuRadioGroup value={locale}>
           {locales.map((loc) => (
-            <DropdownMenuRadioItem key={loc} value={loc}>
-              {languageNames[loc] || loc}
-            </DropdownMenuRadioItem>
+            <Link href={pathname} locale={loc} key={loc} passHref>
+              <DropdownMenuRadioItem value={loc}>
+                {languageNames[loc] || loc}
+              </DropdownMenuRadioItem>
+            </Link>
           ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

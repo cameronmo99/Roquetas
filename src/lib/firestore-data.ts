@@ -1,11 +1,38 @@
 import { db } from './firebase';
-import { collection, getDocs, doc, getDoc, query, where, orderBy, limit } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, query, where, orderBy, limit, type GeoPoint } from 'firebase/firestore';
 import type { Business, Event, NewsItem, PlaceOfInterest, BusinessCategory } from './types';
 
 // Helper function to convert Firestore snapshot to data array
 function snapshotToData<T>(snapshot: any): T[] {
-  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as T));
+  return snapshot.docs.map((doc: any) => {
+    const data = doc.data();
+    // Convert Firestore GeoPoint to a plain object for serialization
+    if (data.location && data.location.latitude && data.location.longitude) {
+      data.location = {
+        lat: data.location.latitude,
+        lng: data.location.longitude,
+      };
+    }
+    return { id: doc.id, ...data } as T;
+  });
 }
+
+// Helper function to convert a single doc to data
+function docToData<T>(docSnap: any): T | null {
+    if (!docSnap.exists()) {
+        return null;
+    }
+    const data = docSnap.data();
+    // Convert Firestore GeoPoint to a plain object for serialization
+    if (data.location && data.location.latitude && data.location.longitude) {
+      data.location = {
+        lat: data.location.latitude,
+        lng: data.location.longitude,
+      };
+    }
+    return { id: docSnap.id, ...data } as T;
+}
+
 
 // Fetch all businesses
 export async function getBusinesses(): Promise<Business[]> {
@@ -18,10 +45,7 @@ export async function getBusinesses(): Promise<Business[]> {
 export async function getBusinessById(id: string): Promise<Business | null> {
   const businessDocRef = doc(db, 'businesses', id);
   const businessSnap = await getDoc(businessDocRef);
-  if (businessSnap.exists()) {
-    return { id: businessSnap.id, ...businessSnap.data() } as Business;
-  }
-  return null;
+  return docToData<Business>(businessSnap);
 }
 
 // Fetch featured businesses
@@ -35,7 +59,7 @@ export async function getFeaturedBusinesses(): Promise<Business[]> {
 // Fetch featured hotels
 export async function getFeaturedHotels(): Promise<Business[]> {
     const businessesCol = collection(db, 'businesses');
-    const q = query(businessesCol, where('featured', '==', true), where('categories', 'array-contains', 'Hotel'));
+    const q = query(businessesCol, where('categories', 'array-contains', 'Hotel'), where('featured', '==', true));
     const snapshot = await getDocs(q);
     return snapshotToData<Business>(snapshot);
 }

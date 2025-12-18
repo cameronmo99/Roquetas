@@ -15,13 +15,16 @@ const firebaseConfig = {
 
 // This function ensures that the Firebase app is initialized only once.
 function getFirebaseApp(): FirebaseApp {
-  if (getApps().length > 0) {
+  if (!getApps().length) {
+    return initializeApp(firebaseConfig);
+  } else {
     return getApp();
   }
-  return initializeApp(firebaseConfig);
 }
 
 const app = getFirebaseApp();
+// Explicitly pass the database ID from the .env file.
+// In your case, this will be "businesses".
 const db = getFirestore(app, process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID);
 
 export { app, db };

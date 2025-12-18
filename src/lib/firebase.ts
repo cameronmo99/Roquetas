@@ -2,14 +2,15 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getFirestore, initializeFirestore } from 'firebase/firestore';
 
-// IMPORTANT: The projectId is hardcoded here to ensure the correct project is always used.
+// IMPORTANT: The Firebase config is hardcoded here to prevent project mismatch errors.
+// These values are for the "roquetas-android" Firebase project.
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: "roquetas-android", // Hardcoded to prevent mismatch errors
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  authDomain: "roquetas-android.firebaseapp.com",
+  projectId: "roquetas-android",
+  storageBucket: "roquetas-android.appspot.com",
+  messagingSenderId: "1083944706530",
+  appId: "1:1083944706530:web:4267ac8d31210860538a8e",
 };
 
 // Initialize Firebase
@@ -21,7 +22,6 @@ if (!getApps().length) {
 }
 
 // Explicitly initialize Firestore with the database ID to prevent connection issues.
-// The databaseId is typically '(default)'.
 const db = initializeFirestore(app, {
     databaseId: '(default)',
 });

@@ -17,7 +17,7 @@ export type BusinessCategory =
 export interface Business {
   id: string;
   name: string;
-  category: BusinessCategory;
+  categories: BusinessCategory[];
   description: string;
   longDescription: string;
   images: string[];

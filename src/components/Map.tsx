@@ -78,9 +78,13 @@ export default function MapComponent({ apiKey }: { apiKey: string }) {
           >
             <div className="w-64">
               <Card className="border-0 bg-transparent shadow-none">
-                  <CardHeader className="flex-row items-center gap-3 space-y-0 p-2">
-                      <div className="flex-shrink-0 text-primary">
-                          {categoryIcons[selectedBusiness.category]}
+                  <CardHeader className="flex-row items-center flex-wrap gap-x-3 gap-y-1 space-y-0 p-2">
+                      <div className="flex flex-shrink-0 items-center gap-2 text-primary">
+                          {selectedBusiness.categories?.map(category => (
+                            <div key={category} className="flex-shrink-0">
+                                {categoryIcons[category]}
+                            </div>
+                          ))}
                       </div>
                       <CardTitle className="text-base font-headline leading-tight">{selectedBusiness.name}</CardTitle>
                   </CardHeader>

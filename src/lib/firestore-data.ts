@@ -1,6 +1,6 @@
 import { db } from './firebase';
 import { collection, getDocs, doc, getDoc, query, where, orderBy, limit } from 'firebase/firestore';
-import type { Business, Event, NewsItem, PlaceOfInterest } from './types';
+import type { Business, Event, NewsItem, PlaceOfInterest, BusinessCategory } from './types';
 
 // Helper function to convert Firestore snapshot to data array
 function snapshotToData<T>(snapshot: any): T[] {
@@ -27,7 +27,7 @@ export async function getBusinessById(id: string): Promise<Business | null> {
 // Fetch featured businesses
 export async function getFeaturedBusinesses(): Promise<Business[]> {
     const businessesCol = collection(db, 'businesses');
-    const q = query(businessesCol, where('featured', '==', true), where('category', '!=', 'Hotel'));
+    const q = query(businessesCol, where('featured', '==', true), where('categories', 'not-in', [['Hotel']]));
     const snapshot = await getDocs(q);
     return snapshotToData<Business>(snapshot);
 }
@@ -35,7 +35,7 @@ export async function getFeaturedBusinesses(): Promise<Business[]> {
 // Fetch featured hotels
 export async function getFeaturedHotels(): Promise<Business[]> {
     const businessesCol = collection(db, 'businesses');
-    const q = query(businessesCol, where('featured', '==', true), where('category', '==', 'Hotel'));
+    const q = query(businessesCol, where('featured', '==', true), where('categories', 'array-contains', 'Hotel'));
     const snapshot = await getDocs(q);
     return snapshotToData<Business>(snapshot);
 }
@@ -59,7 +59,7 @@ export async function getUpcomingEvents(count: number = 3): Promise<Event[]> {
 
 
 // Fetch all news items
-export async function getNews(): Promise<(NewsItem & { businessName: string; businessCategory?: any })[]> {
+export async function getNews(): Promise<(NewsItem & { businessName: string; businessCategories?: BusinessCategory[] })[]> {
     const newsCol = collection(db, 'news');
     const q = query(newsCol, orderBy('date', 'desc'));
     const newsSnapshot = await getDocs(q);
@@ -67,18 +67,18 @@ export async function getNews(): Promise<(NewsItem & { businessName: string; bus
 
     const newsWithBusiness = await Promise.all(newsItems.map(async (newsItem) => {
         let businessName = 'Local Business';
-        let businessCategory;
+        let businessCategories;
         if (newsItem.businessId) {
             const business = await getBusinessById(newsItem.businessId);
             if(business) {
                 businessName = business.name;
-                businessCategory = business.category;
+                businessCategories = business.categories;
             }
         }
         return {
             ...newsItem,
             businessName,
-            businessCategory,
+            businessCategories,
         };
     }));
 

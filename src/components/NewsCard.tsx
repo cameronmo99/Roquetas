@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { Badge } from '@/components/ui/badge';
 
 interface NewsCardProps {
-  newsItem: NewsItem & { businessName: string; businessCategory?: BusinessCategory };
+  newsItem: NewsItem & { businessName: string; businessCategories?: BusinessCategory[] };
 }
 
 const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
@@ -36,7 +36,7 @@ const getCategoryColor = (category: NewsCategory) => {
 
 
 export default function NewsCard({ newsItem }: NewsCardProps) {
-  const { title, content, date, category, image, businessId, businessName, businessCategory } = newsItem;
+  const { title, content, date, category, image, businessId, businessName, businessCategories } = newsItem;
   const formattedDate = format(parseISO(date), 'MMMM d, yyyy');
 
   return (
@@ -60,12 +60,12 @@ export default function NewsCard({ newsItem }: NewsCardProps) {
                     <Tag className="mr-1.5 h-3 w-3" />
                     {category}
                 </Badge>
-                {businessCategory && categoryIcons[businessCategory] && (
-                     <Badge variant="secondary">
-                        {categoryIcons[businessCategory]}
-                        <span className="ml-1.5">{businessCategory}</span>
+                {businessCategories?.map(bizCategory => (
+                     <Badge key={bizCategory} variant="secondary">
+                        {categoryIcons[bizCategory]}
+                        <span className="ml-1.5">{bizCategory}</span>
                     </Badge>
-                )}
+                ))}
             </div>
             <CardTitle className="font-headline text-2xl mb-2">{title}</CardTitle>
             <p className="text-muted-foreground mb-4">{content}</p>

@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import { Coffee, Globe, GlassWater, MapPin, Phone, Star, UtensilsCrossed, StarHalf, Hotel, ShoppingBag, Building2, Store } from 'lucide-react';
 import type { Business, BusinessCategory } from '@/lib/types';
@@ -34,9 +33,13 @@ export default function BusinessDetails({ business }: { business: Business }) {
     <div className="container mx-auto px-4 py-8 md:py-12">
       {/* Header Section */}
       <div className="mb-8">
-        <div className="flex items-center gap-3 text-primary">
-          {categoryIcons[business.category]}
-          <span className="font-semibold">{business.category}</span>
+        <div className="flex items-center gap-4 text-primary flex-wrap">
+          {business.categories?.map(category => (
+              <div key={category} className="flex items-center gap-2">
+                {categoryIcons[category]}
+                <span className="font-semibold">{category}</span>
+              </div>
+          ))}
         </div>
         <h1 className="mt-2 font-headline text-4xl font-bold md:text-6xl">{business.name}</h1>
         {business.featured && (
@@ -87,7 +90,7 @@ export default function BusinessDetails({ business }: { business: Business }) {
             {/* Reviews Section */}
             <div>
                 <h2 className="font-headline text-2xl font-bold">Reviews</h2>
-                {business.reviews.length > 0 ? (
+                {business.reviews && business.reviews.length > 0 ? (
                     <div className="mt-4 space-y-6">
                         {business.reviews.map(review => (
                             <Card key={review.id} className="bg-background/80">
@@ -99,6 +102,7 @@ export default function BusinessDetails({ business }: { business: Business }) {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="italic text-muted-foreground">"{review.comment}"</p>
+
                                 </CardContent>
                             </Card>
                         ))}
@@ -116,18 +120,18 @@ export default function BusinessDetails({ business }: { business: Business }) {
                     <CardTitle className="font-headline">Contact & Location</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 text-sm">
-                    <div className="flex items-start">
+                    {business.address && <div className="flex items-start">
                         <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
                         <span className="ml-3">{business.address.street}, {business.address.city} {business.address.zip}</span>
-                    </div>
-                    <div className="flex items-center">
+                    </div>}
+                    {business.contact?.phone && <div className="flex items-center">
                         <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
                         <a href={`tel:${business.contact.phone}`} className="ml-3 hover:underline">{business.contact.phone}</a>
-                    </div>
-                    <div className="flex items-center">
+                    </div>}
+                    {business.contact?.website && <div className="flex items-center">
                         <Globe className="h-5 w-5 flex-shrink-0 text-primary" />
                         <a href={business.contact.website} target="_blank" rel="noopener noreferrer" className="ml-3 hover:underline truncate">{business.contact.website}</a>
-                    </div>
+                    </div>}
                 </CardContent>
             </Card>
         </div>

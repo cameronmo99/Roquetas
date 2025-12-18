@@ -21,13 +21,16 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
 };
 
 export default function BusinessCard({ business }: BusinessCardProps) {
+  const mainImage = business.images && business.images.length > 0 ? business.images[0] : 'https://picsum.photos/seed/placeholder/600/400';
+  const dataAiHint = business.categories && business.categories.length > 0 ? `${business.categories[0].toLowerCase()} interior` : 'business interior';
+
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-all hover:shadow-lg">
       <div className="relative">
         <Image
-          src={business.images[0]}
+          src={mainImage}
           alt={`Image of ${business.name}`}
-          data-ai-hint={`${business.category.toLowerCase()} interior`}
+          data-ai-hint={dataAiHint}
           width={600}
           height={400}
           className="aspect-[3/2] w-full object-cover"
@@ -41,9 +44,13 @@ export default function BusinessCard({ business }: BusinessCardProps) {
       </div>
       <CardHeader>
         <CardTitle className="font-headline text-xl">{business.name}</CardTitle>
-        <div className="flex items-center text-sm text-muted-foreground">
-          {categoryIcons[business.category]}
-          <span className="ml-1.5">{business.category}</span>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+          {business.categories?.map(category => (
+            <div key={category} className="flex items-center">
+              {categoryIcons[category]}
+              <span className="ml-1.5">{category}</span>
+            </div>
+          ))}
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between">

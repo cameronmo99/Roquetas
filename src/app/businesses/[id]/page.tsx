@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const business = await getBusinessById(params.id);
+  const business = await getBusinessById((await params).id);
   if (!business) {
     return {
       title: 'Business Not Found',
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BusinessDetailsPage({ params }: Props) {
-  const business = await getBusinessById(params.id);
+  const business = await getBusinessById((await params).id);
 
   if (!business) {
     notFound();

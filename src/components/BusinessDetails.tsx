@@ -16,14 +16,18 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
 };
 
 function renderStars(rating: number) {
+    if (typeof rating !== 'number' || rating < 0 || rating > 5) {
+        return null; // Return nothing if rating is invalid
+    }
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    
     return (
       <div className="flex items-center text-accent">
-        {[...Array(fullStars)].map((_, i) => <Star key={`full-${i}`} className="h-5 w-5 fill-accent" />)}
+        {Array.from({ length: fullStars }, (_, i) => <Star key={`full-${i}`} className="h-5 w-5 fill-accent" />)}
         {halfStar && <StarHalf className="h-5 w-5 fill-accent" />}
-        {[...Array(emptyStars)].map((_, i) => <Star key={`empty-${i}`} className="h-5 w-5 text-muted-foreground/50" />)}
+        {Array.from({ length: emptyStars }, (_, i) => <Star key={`empty-${i}`} className="h-5 w-5 text-muted-foreground/50" />)}
       </div>
     );
 }

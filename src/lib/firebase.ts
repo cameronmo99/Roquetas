@@ -2,6 +2,8 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
+// This is the standard configuration for a client-side Firebase app.
+// All values are read from environment variables to keep them secure.
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -11,14 +13,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-let app: FirebaseApp;
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
+// This function ensures that the Firebase app is initialized only once.
+function getFirebaseApp(): FirebaseApp {
+  if (getApps().length > 0) {
+    return getApp();
+  }
+  return initializeApp(firebaseConfig);
 }
 
-const db = getFirestore(app);
+const app = getFirebaseApp();
+const db = getFirestore(app, process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID);
 
 export { app, db };

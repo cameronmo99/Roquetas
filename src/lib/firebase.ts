@@ -22,6 +22,7 @@ if (!getApps().length) {
 }
 
 // Explicitly initialize Firestore with the database ID to prevent connection issues.
+// The database ID is typically '(default)'.
 const db = initializeFirestore(app, {
     databaseId: '(default)',
 });

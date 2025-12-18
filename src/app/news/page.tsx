@@ -1,6 +1,5 @@
 
-import { newsItems } from '@/lib/news-data';
-import { businesses } from '@/lib/data';
+import { getNews } from '@/lib/firestore-data';
 import NewsCard from '@/components/NewsCard';
 
 export const metadata = {
@@ -8,15 +7,8 @@ export const metadata = {
   description: 'Stay up-to-date with the latest news, happy hours, and specialty nights from businesses in Roquetas de Mar.',
 };
 
-export default function NewsPage() {
-  const newsWithBusiness = newsItems.map(newsItem => {
-    const business = businesses.find(b => b.id === newsItem.businessId);
-    return {
-      ...newsItem,
-      businessName: business?.name || 'Local Business',
-      businessCategory: business?.category,
-    };
-  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export default async function NewsPage() {
+  const newsWithBusiness = await getNews();
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">

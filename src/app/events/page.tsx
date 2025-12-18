@@ -1,5 +1,5 @@
 
-import { events } from '@/lib/data';
+import { getEvents } from '@/lib/firestore-data';
 import EventCard from '@/components/EventCard';
 
 export const metadata = {
@@ -7,7 +7,9 @@ export const metadata = {
   description: 'Find out what\'s happening in Roquetas de Mar with our event calendar.',
 };
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const events = await getEvents();
+
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="text-center mb-12">

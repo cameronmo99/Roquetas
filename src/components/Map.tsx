@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
-import { businesses } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { UtensilsCrossed, GlassWater, Coffee, Hotel, ShoppingBag, Building2, Store } from 'lucide-react';
-import type { BusinessCategory } from '@/lib/types';
+import type { Business, BusinessCategory } from '@/lib/types';
+import { getBusinesses } from '@/lib/firestore-data';
+import { Skeleton } from './ui/skeleton';
 
 const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
   Restaurant: <UtensilsCrossed className="h-5 w-5" />,
@@ -20,11 +21,31 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
 };
 
 export default function MapComponent({ apiKey }: { apiKey: string }) {
+  const [businesses, setBusinesses] = useState<Business[]>([]);
   const [selectedBusinessId, setSelectedBusinessId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const businessesData = await getBusinesses();
+        setBusinesses(businessesData);
+      } catch (error) {
+        console.error("Failed to fetch businesses for map", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
 
   const selectedBusiness = businesses.find(b => b.id === selectedBusinessId);
   
   const position = { lat: 36.76, lng: -2.61 }; // Center of Roquetas de Mar
+
+  if (loading) {
+    return <Skeleton className="h-full w-full" />;
+  }
 
   return (
     <APIProvider apiKey={apiKey}>
@@ -36,7 +57,7 @@ export default function MapComponent({ apiKey }: { apiKey: string }) {
         gestureHandling={'greedy'}
       >
         {businesses.map((business) => (
-          <AdvancedMarker
+          business.location && <AdvancedMarker
             key={business.id}
             position={business.location}
             onClick={() => setSelectedBusinessId(business.id)}
@@ -49,7 +70,7 @@ export default function MapComponent({ apiKey }: { apiKey: string }) {
           </AdvancedMarker>
         ))}
 
-        {selectedBusiness && (
+        {selectedBusiness && selectedBusiness.location && (
           <InfoWindow
             position={selectedBusiness.location}
             onCloseClick={() => setSelectedBusinessId(null)}

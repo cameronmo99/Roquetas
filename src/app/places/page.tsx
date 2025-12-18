@@ -1,6 +1,6 @@
 
 import Image from 'next/image';
-import { places } from '@/lib/places-data';
+import { getPlaces } from '@/lib/firestore-data';
 import type { PlaceOfInterest, PlaceOfInterestCategory } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -49,7 +49,9 @@ function PlaceCard({ place }: PlaceCardProps) {
 }
 
 
-export default function PlacesPage() {
+export default async function PlacesPage() {
+  const places = await getPlaces();
+
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="text-center mb-12">

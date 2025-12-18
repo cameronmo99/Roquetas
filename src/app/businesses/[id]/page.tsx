@@ -2,21 +2,25 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-import { businesses } from '@/lib/data';
+import { getBusinesses, getBusinessById } from '@/lib/firestore-data';
 import BusinessDetails from '@/components/BusinessDetails';
 
 type Props = {
   params: { id: string };
 };
 
+// Re-generate routes at build time
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
+  const businesses = await getBusinesses();
   return businesses.map((business) => ({
     id: business.id,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const business = businesses.find((b) => b.id === params.id);
+  const business = await getBusinessById(params.id);
   if (!business) {
     return {
       title: 'Business Not Found',
@@ -28,8 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function BusinessDetailsPage({ params }: Props) {
-  const business = businesses.find((b) => b.id === params.id);
+export default async function BusinessDetailsPage({ params }: Props) {
+  const business = await getBusinessById(params.id);
 
   if (!business) {
     notFound();

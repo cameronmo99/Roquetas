@@ -1,6 +1,6 @@
 
 import { Suspense } from 'react';
-import { businesses } from '@/lib/data';
+import { getBusinesses } from '@/lib/firestore-data';
 import BusinessListings from '@/components/BusinessListings';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -31,7 +31,9 @@ function ListingsSkeleton() {
 }
 
 
-export default function BusinessesPage() {
+export default async function BusinessesPage() {
+  const businesses = await getBusinesses();
+  
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="text-center">

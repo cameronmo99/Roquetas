@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeft, Calendar, MapPin, Star, UtensilsCrossed, Hotel, Building2, Plane, Waves, Newspaper, Phone, GlassWater, Coffee, ShoppingBag } from 'lucide-react';
 
-import { businesses, events } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import AiRecommender from '@/components/AiRecommender';
+import { events, businesses } from '@/lib/data'; // Keep for now for non-firestore part of the page
 import BusinessCard from '@/components/BusinessCard';
 import EventCard from '@/components/EventCard';
-import AiRecommender from '@/components/AiRecommender';
 
 const mainTileLinks = [
     { id: 'food', label: 'Food & Drink', icon: <UtensilsCrossed size={32} /> },

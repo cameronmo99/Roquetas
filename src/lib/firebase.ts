@@ -1,6 +1,6 @@
 // src/lib/firebase.ts
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
-import { getFirestore, initializeFirestore } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -19,10 +19,6 @@ if (!getApps().length) {
   app = getApp();
 }
 
-// Explicitly initialize Firestore with the database ID to prevent connection issues.
-// The database ID is typically '(default)'.
-const db = initializeFirestore(app, {
-    databaseId: '(default)',
-});
+const db = getFirestore(app);
 
 export { app, db };

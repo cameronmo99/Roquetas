@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase for SSR
+// Initialize Firebase
 let app: FirebaseApp;
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);

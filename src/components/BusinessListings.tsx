@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -24,7 +25,7 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
     return allBusinesses.filter((business) => {
       const matchesSearch = business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             business.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = category === 'all' || (business.categories && business.categories.includes(category));
+      const matchesCategory = category === 'all' || (Array.isArray(business.categories) && business.categories.includes(category));
       return matchesSearch && matchesCategory;
     });
   }, [allBusinesses, searchTerm, category]);

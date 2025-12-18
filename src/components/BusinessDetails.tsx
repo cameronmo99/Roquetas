@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Coffee, Globe, GlassWater, MapPin, Phone, Star, UtensilsCrossed, StarHalf, Hotel, ShoppingBag, Building2, Store } from 'lucide-react';
 import type { Business, BusinessCategory } from '@/lib/types';
@@ -106,6 +107,7 @@ export default function BusinessDetails({ business }: { business: Business }) {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="italic text-muted-foreground">"{review.comment}"</p>
+
                                 </CardContent>
                             </Card>
                         ))}

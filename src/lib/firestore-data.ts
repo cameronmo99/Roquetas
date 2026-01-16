@@ -48,18 +48,10 @@ export async function getBusinessById(id: string): Promise<Business | null> {
   return docToData<Business>(businessSnap);
 }
 
-// Fetch featured businesses
+// Fetch all featured businesses
 export async function getFeaturedBusinesses(): Promise<Business[]> {
     const businessesCol = collection(db, 'businesses');
-    const q = query(businessesCol, where('featured', '==', true), where('categories', 'not-in', [['Hotel']]));
-    const snapshot = await getDocs(q);
-    return snapshotToData<Business>(snapshot);
-}
-
-// Fetch featured hotels
-export async function getFeaturedHotels(): Promise<Business[]> {
-    const businessesCol = collection(db, 'businesses');
-    const q = query(businessesCol, where('categories', 'array-contains', 'Hotel'), where('featured', '==', true));
+    const q = query(businessesCol, where('featured', '==', true));
     const snapshot = await getDocs(q);
     return snapshotToData<Business>(snapshot);
 }

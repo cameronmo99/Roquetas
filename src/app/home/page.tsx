@@ -1,15 +1,48 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-import { events } from '@/lib/data';
+import type { Event } from '@/lib/types';
+import { getUpcomingEvents } from '@/lib/firestore-data';
 import { Button } from '@/components/ui/button';
 import EventCard from '@/components/EventCard';
 import AiRecommender from '@/components/AiRecommender';
+import { Skeleton } from '@/components/ui/skeleton';
+
+function EventsSkeleton() {
+  return (
+    <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="space-y-4">
+          <Skeleton className="aspect-[3/2] w-full" />
+          <Skeleton className="h-6 w-3/4" />
+          <Skeleton className="h-4 w-1/2" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 export default function HomePage() {
-  const upcomingEvents = events.slice(0, 3);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await getUpcomingEvents(3);
+        setUpcomingEvents(events);
+      } catch (error) {
+        console.error("Failed to fetch upcoming events", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   return (
     <div className="flex flex-col gap-16 md:gap-24 py-16 md:py-24">
@@ -35,11 +68,15 @@ export default function HomePage() {
           <p className="mt-2 text-muted-foreground">
             Don't miss out on what's happening in Roquetas de Mar.
           </p>
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {upcomingEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
+          {loading ? (
+            <EventsSkeleton />
+          ) : (
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {upcomingEvents.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </div>

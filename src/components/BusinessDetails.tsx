@@ -69,8 +69,8 @@ export default function BusinessDetails({ business }: { business: Business }) {
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {business.images.slice(1, 3).map((img, index) => (
-            <div key={`${img}-${index}`} className="aspect-video w-full">
+          {business.images.slice(1, 3).map((img) => (
+            <div key={img} className="aspect-video w-full">
               <Image
                 src={img}
                 alt={`Image of ${business.name}`}

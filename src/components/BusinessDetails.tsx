@@ -17,7 +17,7 @@ const categoryIcons: Record<BusinessCategory, React.ReactNode> = {
 };
 
 function renderStars(rating: number) {
-    if (typeof rating !== 'number' || rating < 0 || rating > 5) {
+    if (typeof rating !== 'number' || isNaN(rating) || rating < 0 || rating > 5) {
         return null;
     }
     const fullStars = Math.floor(rating);
@@ -69,11 +69,11 @@ export default function BusinessDetails({ business }: { business: Business }) {
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {business.images.slice(1, 3).map((img, index) => (
-            <div key={index} className="aspect-video w-full">
+          {business.images.slice(1, 3).map((img) => (
+            <div key={img} className="aspect-video w-full">
               <Image
                 src={img}
-                alt={`Image ${index + 2} of ${business.name}`}
+                alt={`Image of ${business.name}`}
                 data-ai-hint="food dish"
                 width={400}
                 height={300}

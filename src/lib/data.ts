@@ -4,7 +4,7 @@ export const businesses: Business[] = [
   {
     id: '1',
     name: 'Restaurante Alejandro',
-    category: 'Restaurant',
+    categories: ['Restaurant'],
     description: 'Modern Mediterranean cuisine with stunning sea views.',
     longDescription:
       'Restaurante Alejandro offers a unique dining experience with its innovative dishes based on traditional Andalusian recipes. Our focus on fresh, local ingredients and our breathtaking location make us a must-visit in Roquetas de Mar. Perfect for romantic dinners and special occasions.',
@@ -28,7 +28,7 @@ export const businesses: Business[] = [
   {
     id: '2',
     name: 'Chiringuito La Cabaña',
-    category: 'Bar',
+    categories: ['Bar'],
     description: 'Relaxed beach bar serving fresh seafood and cocktails.',
     longDescription: 'Located right on the sand, Chiringuito La Cabaña is the perfect spot to unwind. Enjoy our famous grilled sardines, refreshing mojitos, and the sound of the waves. A family-friendly atmosphere with live music on weekends.',
     images: ['https://picsum.photos/600/400?random=4', 'https://picsum.photos/600/400?random=5'],
@@ -50,7 +50,7 @@ export const businesses: Business[] = [
   {
     id: '3',
     name: 'Cafetería El Sol',
-    category: 'Cafe',
+    categories: ['Cafe'],
     description: 'Cozy cafe with artisanal coffee and homemade pastries.',
     longDescription: 'Start your day at Cafetería El Sol, a charming corner in the heart of Roquetas. We pride ourselves on our specialty coffee, sourced from local roasters, and our delicious selection of freshly baked cakes, croissants, and local treats.',
     images: ['https://picsum.photos/600/400?random=6', 'https://picsum.photos/600/400?random=7'],
@@ -73,7 +73,7 @@ export const businesses: Business[] = [
     {
     id: '4',
     name: 'Pizzeria La Mamma',
-    category: 'Restaurant',
+    categories: ['Restaurant', 'Takeaway'],
     description: 'Authentic Italian pizza baked in a wood-fired oven.',
     longDescription: 'Pizzeria La Mamma brings a slice of Italy to Roquetas de Mar. Our pizzas are made with traditional techniques and the finest ingredients, baked to perfection in our wood-fired oven. A casual and friendly place for the whole family.',
     images: ['https://picsum.photos/600/400?random=8', 'https://picsum.photos/600/400?random=9'],
@@ -93,7 +93,7 @@ export const businesses: Business[] = [
   {
     id: '5',
     name: 'Bar de Tapas El Rincón',
-    category: 'Bar',
+    categories: ['Bar', 'Restaurant'],
     description: 'Traditional Spanish tapas with a wide selection of local wines.',
     longDescription: 'Experience the true flavor of Andalusia at El Rincón. We offer a vibrant atmosphere where you can enjoy a wide variety of tapas, from classic patatas bravas to creative daily specials. Pair them with a glass of wine from our curated local selection.',
     images: ['https://picsum.photos/600/400?random=10', 'https://picsum.photos/600/400?random=11'],
@@ -115,7 +115,7 @@ export const businesses: Business[] = [
   {
     id: '6',
     name: 'Hotel Bahía Serena',
-    category: 'Hotel',
+    categories: ['Hotel'],
     description: 'Family-friendly hotel with beachfront access and great amenities.',
     longDescription: `Located right on Playa Serena in Roquetas de Mar, Hotel Bahía Serena is a 4-star aparthotel offering a blend of apartment-style comfort, family-friendly amenities, and a prime seaside setting.
 
@@ -146,9 +146,7 @@ Accommodation: Spacious, well-equipped aparthotel-style rooms with sea views and
 Amenities: Multiple pools, spa, fitness, minibars, multiple dining venues, entertainment
 Family-Friendly: Mini-club, playground, animations, game room—great for all ages
 Facilities: Parking, laundry, conference spaces; accessibility services
-Atmosphere: Good value, relaxed, best suited for families or holiday stays rather than romantic escapes
-
-If you're looking for a convenient, beachfront family-friendly option in Roquetas de Mar, Bahía Serena offers a comfortable stay with plenty to do on-site and nearby.`,
+Atmosphere: Good value, relaxed, best suited for families or holiday stays rather than romantic escapes`,
     images: ['https://picsum.photos/600/400?random=16', 'https://picsum.photos/600/400?random=17', 'https://picsum.photos/600/400?random=18'],
     contact: {
       phone: '+34 950 11 22 33',
@@ -168,7 +166,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '7',
     name: "Lilly's Bar",
-    category: 'Cafe',
+    categories: ['Cafe', 'Bar'],
     description: 'A friendly local bar with a great atmosphere and live sports.',
     longDescription: "Lilly's Bar is a popular spot in Roquetas de Mar, known for its welcoming staff and lively ambiance. It's the perfect place to enjoy a drink with friends, watch live sports on our big screens, or just relax after a day at the beach. We offer a wide selection of international and local beers, wines, and spirits, as well as classic bar snacks.",
     images: ['https://media-cdn.tripadvisor.com/media/photo-s/0f/0e/68/82/lilly-s-bar.jpg', 'https://picsum.photos/600/400?random=20'],
@@ -191,7 +189,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '8',
     name: 'Doner Kebab "El Turco"',
-    category: 'Takeaway',
+    categories: ['Takeaway'],
     description: 'Quick and delicious kebabs, perfect for a late-night snack.',
     longDescription: 'Craving a delicious and fast meal? El Turco serves authentic doner kebabs, falafel wraps, and more. We use fresh ingredients to prepare your food quickly, making it the ideal choice for a meal on the go or a late-night craving.',
     images: ['https://picsum.photos/seed/kebab/600/400'],
@@ -204,7 +202,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '9',
     name: 'Apartamentos Estrella de Mar',
-    category: 'Apartment',
+    categories: ['Apartment'],
     description: 'Modern holiday apartments with a shared pool and sea views.',
     longDescription: 'Estrella de Mar offers comfortable and modern self-catering apartments, perfect for families and couples. Each unit includes a fully equipped kitchen, a private balcony, and access to our beautiful garden and swimming pool area.',
     images: ['https://picsum.photos/seed/apartment/600/400'],
@@ -217,7 +215,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '10',
     name: 'Gran Plaza Shopping Centre',
-    category: 'Shop',
+    categories: ['Shop'],
     description: 'The largest shopping mall in the area with a variety of stores.',
     longDescription: 'Gran Plaza is your one-stop destination for shopping, dining, and entertainment. Featuring dozens of international and national brands, a large supermarket, a multi-screen cinema, and a food court with numerous options.',
     images: ['https://picsum.photos/seed/mall/600/400'],
@@ -230,7 +228,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '11',
     name: 'Souvenirs "El Faro"',
-    category: 'Shop',
+    categories: ['Shop'],
     description: 'A charming gift shop with local crafts and beachwear.',
     longDescription: 'Take a piece of Roquetas de Mar home with you. El Faro offers a wide selection of locally made pottery, olive oil, and other crafts. We also stock everything you need for a day at the beach, from sunscreen to sandals.',
     images: ['https://picsum.photos/seed/souvenir/600/400'],
@@ -243,7 +241,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '12',
     name: 'Pizza & Go',
-    category: 'Takeaway',
+    categories: ['Takeaway'],
     description: 'Delicious pizza slices ready in minutes. Perfect for a quick lunch.',
     longDescription: 'When you need a quick, hot, and tasty meal, Pizza & Go is the answer. We offer a variety of classic pizza slices, from Margarita to Pepperoni, all ready to be served in moments. You can also order whole pizzas for takeaway.',
     images: ['https://picsum.photos/seed/pizzago/600/400'],
@@ -256,7 +254,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '13',
     name: 'Apartamentos Sol y Playa',
-    category: 'Apartment',
+    categories: ['Apartment'],
     description: 'Budget-friendly apartments right next to the beach.',
     longDescription: 'Enjoy a fantastic holiday without breaking the bank. Sol y Playa offers simple but clean and comfortable apartments with kitchenettes and balconies. The location is unbeatable, just a one-minute walk from the main beach.',
     images: ['https://picsum.photos/seed/solplaya/600/400'],
@@ -269,7 +267,7 @@ If you're looking for a convenient, beachfront family-friendly option in Roqueta
   {
     id: '14',
     name: 'Mercadona',
-    category: 'Shop',
+    categories: ['Shop'],
     description: 'Large supermarket with a wide range of groceries and household items.',
     longDescription: 'Mercadona is one of Spain\'s leading supermarket chains, offering a huge selection of fresh produce, meats, fish, pantry staples, and international foods. You can also find personal care products and cleaning supplies.',
     images: ['https://picsum.photos/seed/mercadona/600/400'],

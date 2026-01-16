@@ -40,8 +40,8 @@ type TileView = 'welcome' | 'main' | 'food' | 'accommodation';
 
 export default function Home() {
   const [tileView, setTileView] = useState<TileView>('welcome');
-  const featuredBusinesses = businesses.filter((b) => b.featured && b.category !== 'Hotel');
-  const featuredHotels = businesses.filter((b) => b.featured && b.category === 'Hotel');
+  const featuredBusinesses = businesses.filter((b) => b.featured && !b.categories.includes('Hotel'));
+  const featuredHotels = businesses.filter((b) => b.featured && b.categories.includes('Hotel'));
   const upcomingEvents = events.slice(0, 3);
 
   const handleTileClick = (id?: string) => {

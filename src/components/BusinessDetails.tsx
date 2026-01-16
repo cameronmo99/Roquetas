@@ -69,8 +69,8 @@ export default function BusinessDetails({ business }: { business: Business }) {
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {business.images.slice(1, 3).map((img) => (
-            <div key={img} className="aspect-video w-full">
+          {business.images.slice(1, 3).map((img, index) => (
+            <div key={`${img}-${index}`} className="aspect-video w-full">
               <Image
                 src={img}
                 alt={`Image of ${business.name}`}
@@ -97,8 +97,8 @@ export default function BusinessDetails({ business }: { business: Business }) {
                 <h2 className="font-headline text-2xl font-bold">Reviews</h2>
                 {business.reviews && business.reviews.length > 0 ? (
                     <div className="mt-4 space-y-6">
-                        {business.reviews.map(review => (
-                            <Card key={review.id} className="bg-background/80">
+                        {business.reviews.map((review, index) => (
+                            <Card key={review.id || index} className="bg-background/80">
                                 <CardHeader>
                                     <div className="flex items-center justify-between">
                                         <CardTitle className="text-lg font-headline">{review.author}</CardTitle>

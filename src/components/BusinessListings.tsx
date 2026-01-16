@@ -23,9 +23,15 @@ export default function BusinessListings({ allBusinesses }: BusinessListingsProp
 
   const filteredBusinesses = useMemo(() => {
     return allBusinesses.filter((business) => {
-      const matchesSearch = business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            business.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = category === 'all' || (Array.isArray(business.categories) && business.categories.includes(category));
+      const matchesSearch =
+        business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        business.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+      // Corrected logic: Check if the business.categories array includes the selected category
+      const matchesCategory =
+        category === 'all' ||
+        (Array.isArray(business.categories) && business.categories.includes(category));
+
       return matchesSearch && matchesCategory;
     });
   }, [allBusinesses, searchTerm, category]);
